@@ -1,0 +1,19 @@
+'''
+
+    Blog de Notas de ()
+    ------------------------
+    v1.0
+    ========================
+    *Ejercicio 3pts para el examen final del módulo
+    *Sin Internet
+        Sin Slack
+        Con Evernote
+    *Interfaz: Terminal
+    *Opciones del blog de Notas
+    *Diagrama de flujo en www.lucidchart.co
+    Entorno virtual de python 3.7
+    Git local
+    Final ejercicio a las 4:15
+    Enviar enlace de GitHub
+'''
+
