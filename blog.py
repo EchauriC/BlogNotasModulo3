@@ -18,6 +18,7 @@ def mostrarMenu():
             [2] Crear Nota
             [3] Editar nota
             [4] Borrar nota
+            [5] Buscar en notas
             [0] Salir
             
     ''')
@@ -28,7 +29,7 @@ def accionMenu(opcion):
 
     global notas
 
-    if opcion < 1 or opcion > 4:
+    if opcion < 1 or opcion > 5:
         print('Opcion no disponible')
     else:
 
@@ -36,6 +37,15 @@ def accionMenu(opcion):
             while True:
                 crearNota(notas)
                 if not repetirAccion():
+                    break
+
+        elif opcion == 5:
+            while True:
+                if existenNotas(notas):
+                    buscarEnNotas(notas)
+                    if not repetirAccion():
+                        break
+                else:
                     break
         else:
             while True:
@@ -60,13 +70,13 @@ def accionMenu(opcion):
                 else:
                     break
 
-        if opcion != 1:
+        if opcion not in [1,5]:
             guardarNotas(notas)
 
 
 def repetirAccion():
     try:
-        repetir = int(input('¿Quieres repetir el proceso con otra nota? 1 = Si / Otra tecla para continuar: '))
+        repetir = int(input('¿Quieres repetir el proceso? 1 = Si / Otra tecla = continuar: '))
     except ValueError as identifier:
         repetir = -1
 
@@ -76,7 +86,7 @@ def repetirAccion():
         return False
 
 
-#### CRUD notas ####
+#### Acciones sobre las notas como escritura, lectura, etc ####
 def crearNota(notas):
     texto = input('Introduce la nueva nota: ')
     notas.append(texto)
@@ -108,6 +118,17 @@ def borrarNota(seleccion, notas):
     del notas[seleccion]
     print(f'Nota {seleccion} eliminada')
     print('')
+
+
+def buscarEnNotas(notas):
+    filtro = input('Introduce lo que quieras buscar: ')
+    count = 0
+    for idx, nota in enumerate(notas):
+        if nota.count(filtro) > 0:
+            print(f'[{idx}] -> {nota}')
+            count += 1
+    if count == 0:
+        print(f'No hay notas que contengan ese texto.')
 
 
 #### Lectura y escritura de archivos ####
